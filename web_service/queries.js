@@ -20,12 +20,20 @@ function save(req, res){
 }
 
 function getAll(req, res){
-  User.find(function(err, doc){
+  User.find(function (err, doc) {
+      res.send(doc);
+  })
+}
+
+function get(req, res){
+  var name = req.params.name;
+  User.findOne({name:name},function (err, doc) {
     res.send(doc);
-  });
+  })
 }
 
 module.exports = {
-  save : save,
-  getAll : getAll
+  save: save,
+  getAll: getAll,
+  get: get
 }
